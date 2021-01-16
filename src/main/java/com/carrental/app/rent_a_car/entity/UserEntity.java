@@ -7,6 +7,8 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -29,5 +31,8 @@ public class UserEntity {
     private String country;
     private Timestamp regDate;
     private Timestamp updateDate;
-    private String role;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "USER_ID", referencedColumnName = "id")
+    private List<UserRole> roles=new ArrayList<>();
 }
