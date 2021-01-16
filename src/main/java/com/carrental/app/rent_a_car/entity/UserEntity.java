@@ -17,15 +17,17 @@ import java.sql.Timestamp;
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id;
-    String fullName;
-    String emailId;
-    String password;
-    String contactNo;
-    Timestamp dob;
-    String address;
-    String city;
-    String country;
-    Timestamp regDate;
-    Timestamp updateDate;
+    private long id;
+    private String fullName;
+    private String emailId;
+    private String username;
+    private String password;
+    private String contactNo;
+    private Timestamp dob;
+    private String address;
+    private String city;
+    private String country;
+    private Timestamp regDate;
+    private Timestamp updateDate;
+    private String role;
 }

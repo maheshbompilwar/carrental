@@ -15,7 +15,7 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @GetMapping(value = "")
+    @GetMapping(value = "welcome")
     public String welcome() {
         return "Welcome to user ...";
     }

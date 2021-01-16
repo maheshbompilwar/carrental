@@ -17,8 +17,8 @@ import java.sql.Timestamp;
 public class BrandNameEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id;
-    String brandName;
-    Timestamp creationDate;
-    Timestamp updateDate;
+    private long id;
+    private String brandName;
+    private Timestamp creationDate;
+    private Timestamp updateDate;
 }

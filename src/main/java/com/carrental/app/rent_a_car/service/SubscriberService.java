@@ -1,6 +1,5 @@
 package com.carrental.app.rent_a_car.service;
 
-import com.carrental.app.rent_a_car.entity.AdminEntity;
 import com.carrental.app.rent_a_car.entity.SubscriberEntity;
 import com.carrental.app.rent_a_car.model.ResponseMessage;
 
