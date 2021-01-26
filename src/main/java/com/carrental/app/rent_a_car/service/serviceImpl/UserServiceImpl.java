@@ -2,7 +2,9 @@ package com.carrental.app.rent_a_car.service.serviceImpl;
 
 import com.carrental.app.rent_a_car.config.JwtUtil;
 import com.carrental.app.rent_a_car.entity.UserEntity;
+import com.carrental.app.rent_a_car.entity.UserRole;
 import com.carrental.app.rent_a_car.model.ResponseMessage;
+import com.carrental.app.rent_a_car.model.Role;
 import com.carrental.app.rent_a_car.repository.UserRepository;
 import com.carrental.app.rent_a_car.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -78,11 +81,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        List<SimpleGrantedAuthority> roles = null;
+        List<SimpleGrantedAuthority> roles = new ArrayList<>();
         UserEntity userEntity = userRepository.findByUsername(username);
         if(userEntity!=null){
-            //roles= Arrays.asList(new SimpleGrantedAuthority(adminEntity.getRole()));
-            roles= Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN"));
+            for(UserRole role : userEntity.getRoles()){
+                roles.add(new SimpleGrantedAuthority(role.getRole()));
+            }
+
+            //roles= Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN"));
             return new User(userEntity.getUsername(),userEntity.getPassword(),roles);
         }
         throw new UsernameNotFoundException("User not found for "+username);
